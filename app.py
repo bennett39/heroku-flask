@@ -28,7 +28,7 @@ def post_to_db():
         db.session.add(indata)
         db.session.commit()
     except Exception as e:
-        print("\n FAILED entry.\n"
+        print("\n FAILED entry.\n")
         print(e)
         sys.stdout.flush()
     return 'Success! To enter more data, <a href="{}">click here!</a>'.format(url_for("enter_data"))
