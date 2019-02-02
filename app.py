@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, url_for
 from flask_heroku import Heroku
 from flask_sqlalchemy import SQLAlchemy
 
-#  import copy
 import json
 import sys
 
@@ -22,8 +21,6 @@ class Dataentry(db.Model):
 @app.route("/submit", methods=["POST"])
 def post_to_db():
     indata = Dataentry(request.form['mydata'])
-    #  data = copy(indata.__dict__ )
-    #  del data["_sa_instance_state"]
     try:
         db.session.add(indata)
         db.session.commit()
@@ -38,5 +35,4 @@ def enter_data():
     return render_template("dataentry.html")
 
 if __name__ == ' __main__':
-    # app.debug = True
     app.run()
