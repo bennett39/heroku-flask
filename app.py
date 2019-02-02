@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, url_for
 from flask_heroku import Heroku
 from flask_sqlalchemy import SQLAlchemy
 
-import copy
+#  import copy
 import json
 import sys
 
@@ -22,13 +22,13 @@ class Dataentry(db.Model):
 @app.route("/submit", methods=["POST"])
 def post_to_db():
     indata = Dataentry(request.form['mydata'])
-    data = copy(indata.__dict__ )
-    del data["_sa_instance_state"]
+    #  data = copy(indata.__dict__ )
+    #  del data["_sa_instance_state"]
     try:
         db.session.add(indata)
         db.session.commit()
     except Exception as e:
-        print("\n FAILED entry: {}\n".format(json.dumps(data))) 
+        print("\n FAILED entry.\n"
         print(e)
         sys.stdout.flush()
     return 'Success! To enter more data, <a href="{}">click here!</a>'.format(url_for("enter_data"))
