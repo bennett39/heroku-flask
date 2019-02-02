@@ -2,11 +2,16 @@ from flask import Flask, render_template, request, url_for
 from flask_heroku import Heroku
 from flask_sqlalchemy import SQLAlchemy
 
+from dotenv import load_dotenv
+
+import os
 import json
 import sys
 
+load_dotenv()
 app = Flask( __name__ )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 heroku = Heroku(app)
 db = SQLAlchemy(app)
 
